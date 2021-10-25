@@ -6,7 +6,7 @@
 
 - [En egen klass](#En-egen-klass)
 
-- [Övningar till klassen `Car`](#Övningar-till-klassen-Car)
+- [Övningar till klassen `Airplane`](#Övningar-till-klassen-Airplane)
 
 - [Fler övningar - En ny klass](#Fler-övningar---En-ny-klass)
 
@@ -46,71 +46,63 @@ Du ska nu inte gå igenom `Turtle`-klassen, utan jag ska istället visa hur en e
 
 ## En egen klass
 
-Vi ska börja med att skapa klassen `Car`. Den kommer att hålla reda på bilmodell, färg och miltal. När vi har skapat klassen `Car` kommer vi att kunna deklarera **objekt** av den enligt
+Vi ska börja med att skapa klassen `Airplane`. Den kommer att hålla reda på flygplansmodell, vingbredd och passagerarkapacitet. När vi har skapat klassen `Airplane` kommer vi att kunna deklarera **objekt** av den enligt
 
 ```Python
-a_car = Car()                        # Deklarerar en "tom" bil
-b_car = Car('Volvo', 'Silver', 1587) # Deklarerar en Volvo med färgen silver som har gått 1587 mil
+a_plane = Airplane("Boeing 747", 30, 200) # Deklarerar en Boeing med vingbredden 30m som kan ta 200 passagerare
 
-b_car.get_brand()                     # Skriver ut modellen
-a_car.set_brand('Fiat')               # Anger modellen
-a_car.get_brand()
+print(a_plane.model)                     # Skriver ut modellen
+a_plane.model = "Airbus 380"               # Anger modellen
+print(a_plane.model)
 ```
 
-För att implementera detta skapas klassen enligt nedan (denna klass finns i filen `bilregister.py`):
+För att implementera detta skapas klassen enligt nedan (denna klass finns i filen `flygplats.py`):
 
 ```Python
-class Car():
-   '''
-   En klass som håller reda på några egenskaper hos en bil.
-   '''
-   # Metoden __init__, körs alltid då ett objekt skapas
-   def __init__(self, brand, color, mileage):
-      # Nedanstående variabler kallas för attribut.
-      # Alla objekt av klassen Car har egna värden på dessa.
-      self.brand = brand
-      self.color = color
-      self.mileage = mileage
+class Airplane():
+    '''
+    En klass som håller reda på några egenskaper hos ett flygplan.
+    '''
+    # Metoden __init__, körs alltid då ett objekt skapas
 
-   def get_brand(self):
-      '''
-      Skriver ut bilmärket
-      '''
-      print(self.brand)
+    def __init__(self, model, wingspan, capacity):
+        # Nedanstående variabler kallas för attribut.
+        # Alla objekt av klassen Airplane har egna värden på dessa.
+        self.model = model
+        self.wingspan = wingspan
+        self.capacity = capacity
 
-   def set_brand(self, new_brand):
-      '''
-      Parameter: new_brand | sträng
-      Uppdaterar bilmärket om det existerar. Om det inte existerar
-      så tilldelas aktuellt objekt märket enligt parametern.
-      '''
-      self.brand = new_brand
+    def print_info(self):
+        '''
+        Skriver ut information om ett flygplan (en instans av klassen Airplane).
+        '''
+        print(
+            f"{self.model}. Wingspan: {self.wingspan}. Capacity: {self.capacity}")
 
 # ----------Huvudprogram----------
 # Nu när klassen finns kan vi skapa objekt (variabler) med denna typ.
 # Dessa objekt har också tillgång till klassens metoder (funktioner).
-a_car = Car('Volvo', 'Blå', 1587)
-a_car.get_brand()
-a_car.set_brand('Renault')
-a_car.get_brand()
+a_plane = Airplane("Boeing 747", 30, 200)
+a_plane.model = 'Airbus 380'
+a_plane.print_info()
 ```
 
-## Övningar till klassen `Car`
+## Övningar till klassen `Airplane`
 
 Nedan finns ett antal uppgifter till klassen ovan. Det kan nog ta lite olika lång tid för olika personer att göra övningarna. I samband med varje lektion är huvudregeln att du ska synkronisera "repon" (projektet på ditt konto på GitHub). På så sätt kommer kodningshistoriken att bli synlig och din process går att följa.
 
 1. Gör en `Fork` av detta projekt till ditt GitHub-konto.
 2. Klona projektet från ditt GitHub-konto till lämplig plats på din dator.
-3. Öppna filen `bilregister.py` i VS Code och kör programmet. Försök att förklara varför utskriften blir som den blir.
-4. Skapa ett objekt `b_car` och initiera denna med valfri modell, färg och miltal.
-5. Tillämpa metoden `get_brand()` både på `a_car` och `b_car`. Resultat?
-6. Skapa en ny metod inne i klassen, `set_color(self, new_color)`. Denna metod ska ändra på attributet `color`.
-7. För att kunna testa om `set_color(self, new_color)` så kan du direkt komma åt **attributet** `color` genom t ex `print(a_car.color)` (någonstans i huvudprogrammet) . Observera att du alltså skriver ut en variabel, och inte anropar en metod, på det sättet. Pröva detta!
-8. Skapa även metoden `set_mileage(self, new_mileage)`. Testa att den fungerar.
-9. Skapa ytterligare en metod, `get_mileage(self)`. Den metoden ska inte skriva ut miltalet, utan den ska istället **returnera** miltalet. Anropet kan ske genom `theMileage = a_car.getMileage()` (i huvudprogrammet). Därefter kan miltalet skrivas ut.
-10. Skapa objekten `c_car`, och `d_car` med lämpliga bilmärken, färger och miltal. Nu kan du lägga in alla dina bilar (fyra stycken bör det vara) i en lista, `my_cars`. [Här finns presentationen om listor](https://slides.com/nikodemus/listor/fullscreen?token=bPF0RWd0#/3).
-11. Loopa genom listan (se ovanstående presentation) för att skriva ut alla bilmodeller som finns i programmet.
-12. **Om du hinner**: Gör en meny som kan skriva ut listan med samtliga attribut sorterad i bokstavsordning / miltal / årsmodell eller färg, beroende på vilket menyval som görs.
+3. Öppna filen `flygplats.py` i VS Code och kör programmet. Försök att förklara varför utskriften blir som den blir.
+4. Skapa ett objekt `b_plane` och initiera detta med valfri modell, vingbredd och kapacitet.
+5. Tillämpa metoden `print_info()` både på `a_plane` och `b_plane`. Resultat?
+6. Skapa en ny metod inne i klassen, `set_wingspan(self, new_wingspan)`. Denna metod ska ändra på attributet `wingspan`.
+7. För att kunna testa om `set_wingspan(self, new_wingspan)` så kan du direkt komma åt **attributet** `wingspan` genom t ex `print(a_plane.wingspan)` (någonstans i huvudprogrammet) . Observera att du alltså skriver ut en variabel, och inte anropar en metod, på det sättet. Prova att anropa `set_wingspan` på `a_plane` och för att sätta om `wingspan` och skriv sedan ut det nya värdet på attributet `wingspan`.
+8. Skapa även metoden `set_capacity(self, new_capacity)`. Testa att den fungerar.
+9. Skapa ytterligare en metod, `get_capacity(self)`. Den metoden ska inte skriva ut kapaciteten, utan den ska istället **returnera** kapaciteten. Anropet kan ske genom `the_capacity = a_plane.get_capacity()` (i huvudprogrammet). Därefter kan kapaciteten skrivas ut.
+10. Skapa objekten `c_plane`, och `d_plane` med lämpliga modeller, vingbredder och passagerarkapacitet. Nu kan du lägga in alla dina flygplan (fyra stycken bör det vara) i en lista, `planes`. [Här finns presentationen om listor](https://slides.com/nikodemus/listor/fullscreen?token=bPF0RWd0#/3).
+11. Loopa genom listan (se ovanstående presentation) för att skriva ut alla flygplan som finns i programmet.
+12. **Om du hinner**: Gör en meny som kan skriva ut listan med objektens samtliga attribut sorterad i bokstavsordning / vingbredd eller kapacitet, beroende på vilket menyval som görs.
 
 ## Fler övningar - En ny klass
 
