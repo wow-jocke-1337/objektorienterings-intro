@@ -1,6 +1,6 @@
 class Player():
     def __init__(self, lifes):
-        self.lifes = self.lifes
+        self.lifes = lifes
         self.scores = 0
         self.did_hit = False
         self.is_hitted = False
