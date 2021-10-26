@@ -23,6 +23,6 @@ class Airplane():
 # ----------Huvudprogram----------
 # Nu när klassen finns kan vi skapa objekt (variabler) med denna typ.
 # Dessa objekt har också tillgång till klassens metoder (funktioner).
-a_plane = Airplane("Boeing 747", 30, 200)
+a_plane = Airplane("Boeing 747", 64.6, 500)
 a_plane.model = 'Airbus 380'
 a_plane.print_info()
